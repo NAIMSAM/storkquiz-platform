@@ -181,7 +181,7 @@ const StudentView: React.FC<StudentViewProps> = ({ session, onSubmitResponse }) 
       <div className="bg-[#0f172a] p-8 rounded-3xl shadow-xl border border-slate-700 space-y-8 min-h-[400px] flex flex-col relative overflow-hidden">
         {/* Feedback Overlay on Reveal */}
         {isReveal && selectedOption !== null && (
-          <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${selectedOption === currentQuestion.correctAnswerIndex ? 'from-green-400 to-green-600' : 'from-red-400 to-red-600'}`}></div>
+          <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${selectedOption === currentQuestion.correctAnswerIndex ? 'from-[#13b5ea] to-blue-500' : 'from-red-400 to-red-600'}`}></div>
         )}
 
         <h3 className="text-xl font-bold text-white">{currentQuestion.question}</h3>
@@ -191,11 +191,11 @@ const StudentView: React.FC<StudentViewProps> = ({ session, onSubmitResponse }) 
             let styleClass = 'bg-slate-800 border-slate-600 text-slate-300 hover:border-cyan-500 hover:text-white';
 
             if (isReveal) {
-              if (idx === currentQuestion.correctAnswerIndex) styleClass = 'bg-green-900/30 border-green-500 text-green-400 font-bold';
+              if (idx === currentQuestion.correctAnswerIndex) styleClass = 'bg-[#13b5ea]/20 border-[#13b5ea] text-[#13b5ea] font-bold';
               else if (idx === selectedOption) styleClass = 'bg-red-900/30 border-red-500 text-red-400 opacity-60';
               else styleClass = 'opacity-30 grayscale border-slate-800';
             } else {
-              if (selectedOption === idx) styleClass = 'bg-cyan-600 border-cyan-500 text-white shadow-[0_0_15px_rgba(6,182,212,0.4)] transform scale-[1.02] z-10';
+              if (selectedOption === idx) styleClass = 'bg-[#13b5ea] border-[#13b5ea] text-white shadow-[0_0_15px_rgba(19,181,234,0.4)] transform scale-[1.02] z-10';
               else if (selectedOption !== null) styleClass = 'opacity-50 border-slate-700'; // Dim others
             }
 
@@ -210,8 +210,12 @@ const StudentView: React.FC<StudentViewProps> = ({ session, onSubmitResponse }) 
                   {String.fromCharCode(65 + idx)}
                 </span>
                 <span>{option}</span>
-                {isReveal && idx === currentQuestion.correctAnswerIndex && <span className="ml-auto text-xl">✅</span>}
-                {isReveal && idx === selectedOption && idx !== currentQuestion.correctAnswerIndex && <span className="ml-auto text-xl">❌</span>}
+                {isReveal && idx === currentQuestion.correctAnswerIndex && (
+                  <svg className="ml-auto w-6 h-6 text-[#13b5ea]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                )}
+                {isReveal && idx === selectedOption && idx !== currentQuestion.correctAnswerIndex && (
+                  <svg className="ml-auto w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" /></svg>
+                )}
               </button>
             );
           })}

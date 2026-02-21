@@ -292,7 +292,7 @@ const LiveSessionView: React.FC<LiveSessionViewProps> = ({ session, responses, o
                   <YAxis hide />
                   <Bar dataKey="value" radius={[8, 8, 0, 0]} barSize={80}>
                     {data.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.isCorrect ? '#22d3ee' : '#334155'} />
+                      <Cell key={`cell-${index}`} fill={entry.isCorrect ? '#13b5ea' : '#334155'} />
                     ))}
                   </Bar>
                 </BarChart>
@@ -303,8 +303,10 @@ const LiveSessionView: React.FC<LiveSessionViewProps> = ({ session, responses, o
           {/* Options List with Correct Answer Highlight */}
           <div className="space-y-3 flex-grow overflow-y-auto custom-scrollbar pr-2 flex flex-col">
             {q.options.map((opt, i) => (
-              <div key={i} className={`p-4 rounded-2xl border flex items-center gap-3 transition-all ${i === q.correctAnswerIndex ? 'bg-cyan-900/20 border-cyan-500 text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.2)]' : 'bg-[#1e293b] border-slate-700 text-slate-500 opacity-60'}`}>
-                {i === q.correctAnswerIndex && <span className="text-xl">✅</span>}
+              <div key={i} className={`p-4 rounded-2xl border flex items-center gap-3 transition-all ${i === q.correctAnswerIndex ? 'bg-[#13b5ea]/20 border-[#13b5ea] text-[#13b5ea] shadow-[0_0_15px_rgba(19,181,234,0.2)]' : 'bg-[#1e293b] border-slate-700 text-slate-500 opacity-60'}`}>
+                {i === q.correctAnswerIndex && (
+                  <svg className="w-6 h-6 text-[#13b5ea] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                )}
                 <span className="font-bold text-md leading-tight">{opt}</span>
                 <span className="ml-auto font-mono opacity-50 bg-slate-800 px-2 py-1 rounded text-xs">{currentStats?.responses[i] || 0}</span>
               </div>

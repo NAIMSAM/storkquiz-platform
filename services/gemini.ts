@@ -14,14 +14,15 @@ export const generateQuizFromContent = async (
   OBJECTIF PÉDAGOGIQUE CRUCIAL :
   Ce quiz sert d'ACCROCHE pour une formation. Il doit tester l'INTUITION des participants face à la RÉALITÉ du terrain avant qu'ils n'aient l'explication.
   
-  CONSIGNES :
+  CONSIGNES STRICTES DE FORMAT :
   1. Génère exactement ${questionCount} questions.
-  2. Les questions doivent être formulées pour challenger les idées reçues ou les connaissances.
-  3. N'utilise PAS les données du texte pour poser des questions de "compréhension de lecture". Utilise les données pour créer un contraste entre ce qu'on pense et la réalité.
-  4. La "correctAnswer" doit être la vraie réponse basée sur le texte (la Réalité).
-  5. L'explication doit clairement dire "En réalité..." ou "Contrairement à ce qu'on pense..." en utilisant les preuves du texte.
+  2. Les questions doivent être très COURTES et DIRECTES (Maximum 15 mots par question).
+  3. Les options de réponse doivent être très COURTES et CONCISES (Maximum 6 mots par option).
+  4. Les questions doivent être formulées pour challenger les idées reçues.
+  5. La "correctAnswer" doit être la vraie réponse basée sur le texte.
+  6. L'explication doit commencer par "En réalité..." ou "Contrairement à ce qu'on pense...".
   
-  Format : ${questionCount} questions, 4 choix par question.`;
+  Format : ${questionCount} questions concises, 4 choix très courts par question.`;
 
   const parts: any[] = [{ text: prompt }, { text: `CONTENU: ${content}` }];
 
