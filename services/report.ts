@@ -34,7 +34,7 @@ export const generateSessionReport = (session: QuizSession, responses: StudentRe
     // --- LEADERBOARD TABLE ---
     doc.setFontSize(14);
     doc.setTextColor(0);
-    doc.text("🏆 Classement Général", 14, 70);
+    doc.text("Classement Général", 14, 70);
 
     // Calculate scores
     const scores: Record<string, number> = {};
@@ -68,7 +68,7 @@ export const generateSessionReport = (session: QuizSession, responses: StudentRe
     // @ts-ignore
     const finalY = doc.lastAutoTable.finalY + 15;
     doc.setFontSize(14);
-    doc.text("📊 Statistiques par Question", 14, finalY);
+    doc.text("Statistiques par Question", 14, finalY);
 
     const questionStats = session.questions.map((q, idx) => {
         const qResponses = responses.filter(r => r.questionId === q.id);

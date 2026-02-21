@@ -206,7 +206,7 @@ const StudentView: React.FC<StudentViewProps> = ({ session, onSubmitResponse }) 
                 onClick={() => handleAnswer(idx)}
                 className={`p-4 text-left border-2 rounded-2xl font-semibold transition-all duration-300 flex items-center gap-4 ${styleClass}`}
               >
-                <span className={`w-8 h-8 rounded-full border-2 flex items-center justify-center flex-shrink-0 text-sm font-bold ${selectedOption === idx && !isReveal ? 'border-white text-white' : 'border-slate-500 text-slate-400'}`}>
+                <span className={`w-8 h-8 rounded-full border-2 flex items-center justify-center flex-shrink-0 text-sm font-bold ${selectedOption === idx && !isReveal ? 'border-white text-white' : 'border-[#13b5ea] text-[#13b5ea]'}`}>
                   {String.fromCharCode(65 + idx)}
                 </span>
                 <span>{option}</span>

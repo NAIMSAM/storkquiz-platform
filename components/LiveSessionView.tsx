@@ -246,7 +246,7 @@ const LiveSessionView: React.FC<LiveSessionViewProps> = ({ session, responses, o
         <div className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 min-h-0 pb-24 md:pb-28">
           {q.options.map((opt, idx) => (
             <div key={idx} className="bg-[#1e293b] p-6 rounded-3xl border border-slate-700 shadow-lg flex items-center gap-6 hover:border-cyan-500/50 transition-colors h-full overflow-hidden">
-              <span className="w-12 h-12 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center font-bold text-slate-400 flex-shrink-0 text-xl">
+              <span className="w-12 h-12 rounded-full bg-slate-800 border-2 border-[#13b5ea] flex items-center justify-center font-bold text-[#13b5ea] flex-shrink-0 text-xl">
                 {String.fromCharCode(65 + idx)}
               </span>
               <span className="text-lg md:text-xl font-medium text-slate-300 line-clamp-4">
