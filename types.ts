@@ -56,6 +56,12 @@ export enum AppView {
   PRICING = 'PRICING'
 }
 
+declare global {
+  interface Window {
+    _env_: any;
+  }
+}
+
 export enum SubscriptionTier {
   FREE = 'FREE',
   PRO = 'PRO',

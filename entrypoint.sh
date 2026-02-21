@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Génère le fichier env-config.js avec les vraies variables d'environnement de Cloud Run
+cat <<EOF > /usr/share/nginx/html/env-config.js
+window._env_ = {
+  FIREBASE_API_KEY: "${FIREBASE_API_KEY}",
+  FIREBASE_AUTH_DOMAIN: "${FIREBASE_AUTH_DOMAIN}",
+  FIREBASE_PROJECT_ID: "${FIREBASE_PROJECT_ID}",
+  FIREBASE_STORAGE_BUCKET: "${FIREBASE_STORAGE_BUCKET}",
+  FIREBASE_MESSAGING_SENDER_ID: "${FIREBASE_MESSAGING_SENDER_ID}",
+  FIREBASE_APP_ID: "${FIREBASE_APP_ID}",
+  FIREBASE_DATABASE_URL: "${FIREBASE_DATABASE_URL}",
+  GEMINI_API_KEY: "${GEMINI_API_KEY}",
+};
+EOF
+
+# Démarre Nginx
+echo "Démarrage de Nginx..."
+exec nginx -g "daemon off;"

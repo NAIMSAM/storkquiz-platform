@@ -7,7 +7,7 @@ export const generateQuizFromContent = async (
   images: string[] = [],
   questionCount: number = 5
 ): Promise<QuizQuestion[]> => {
-  const genAI = new GoogleGenAI({ apiKey: process.env.API_KEY || process.env.GEMINI_API_KEY || "" });
+  const genAI = new GoogleGenAI({ apiKey: window._env_?.GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY || "" });
 
   const prompt = `Génère un quiz de ${questionCount} questions à choix multiples basé sur le contenu fourni.
   
