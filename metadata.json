@@ -1,0 +1,7 @@
+{
+  "name": "AI Trainer Quiz Pro",
+  "description": "Une plateforme interactive pour transformer vos supports de formation (slides, texte, images) en quiz d'IA engageants avec suivi de progression en temps réel via QR code.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

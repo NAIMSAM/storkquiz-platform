@@ -1,0 +1,29 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '--build-arg'
+      - 'VITE_FIREBASE_API_KEY=${_VITE_FIREBASE_API_KEY}'
+      - '--build-arg'
+      - 'VITE_FIREBASE_AUTH_DOMAIN=${_VITE_FIREBASE_AUTH_DOMAIN}'
+      - '--build-arg'
+      - 'VITE_FIREBASE_PROJECT_ID=${_VITE_FIREBASE_PROJECT_ID}'
+      - '--build-arg'
+      - 'VITE_FIREBASE_STORAGE_BUCKET=${_VITE_FIREBASE_STORAGE_BUCKET}'
+      - '--build-arg'
+      - 'VITE_FIREBASE_MESSAGING_SENDER_ID=${_VITE_FIREBASE_MESSAGING_SENDER_ID}'
+      - '--build-arg'
+      - 'VITE_FIREBASE_APP_ID=${_VITE_FIREBASE_APP_ID}'
+      - '--build-arg'
+      - 'VITE_FIREBASE_DATABASE_URL=${_VITE_FIREBASE_DATABASE_URL}'
+      - '--build-arg'
+      - 'GEMINI_API_KEY=${_GEMINI_API_KEY}'
+      - '-t'
+      - 'europe-west9-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/storkquiz-platform'
+      - '.'
+
+images:
+  - 'europe-west9-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/storkquiz-platform'
+
+# Les valeurs de substitution sont configurées dans la console Google Cloud
+# Cloud Build > Triggers > Variables de substitution (JAMAIS dans le code)
