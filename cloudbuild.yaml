@@ -1,4 +1,5 @@
 steps:
+  # Étape 1 : Build de l'image Docker avec les variables Firebase
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
@@ -19,11 +20,39 @@ steps:
       - '--build-arg'
       - 'GEMINI_API_KEY=${_GEMINI_API_KEY}'
       - '-t'
-      - 'europe-west9-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/storkquiz-platform'
+      - 'gcr.io/$PROJECT_ID/storkquiz-platform:$COMMIT_SHA'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/storkquiz-platform:latest'
       - '.'
 
-images:
-  - 'europe-west9-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/storkquiz-platform'
+  # Étape 2 : Push de l'image vers Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/storkquiz-platform:$COMMIT_SHA']
 
-# Les valeurs de substitution sont configurées dans la console Google Cloud
-# Cloud Build > Triggers > Variables de substitution (JAMAIS dans le code)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/storkquiz-platform:latest']
+
+  # Étape 3 : Déploiement sur Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'storkquiz-platform'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/storkquiz-platform:$COMMIT_SHA'
+      - '--region'
+      - 'europe-west1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--port'
+      - '8080'
+
+images:
+  - 'gcr.io/$PROJECT_ID/storkquiz-platform:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/storkquiz-platform:latest'
+
+# IMPORTANT : Les valeurs de substitution sont configurées
+# dans la console Google Cloud > Cloud Build > Triggers
+# JAMAIS dans ce fichier !
